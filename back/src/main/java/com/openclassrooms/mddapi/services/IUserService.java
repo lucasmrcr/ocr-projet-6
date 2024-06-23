@@ -14,16 +14,17 @@ public interface IUserService extends UserDetailsService {
      * Register a new user.
      *
      * @param username the username
+     * @param email    the email
      * @param password the password
      * @return the new user
      */
-    User registerNewUser(String username, String password);
+    User registerNewUser(String username, String email, String password);
 
     /**
      * Find a user by username.
      *
-     * @param username the username
+     * @param email the email
      * @return the user
      */
-    Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
 }

@@ -8,10 +8,11 @@ public interface IAuthService {
      * Register a new user.
      *
      * @param username the username
+     * @param email the email
      * @param password the password
      * @return the auth jwt token
      */
-    String register(String username, String password);
+    String register(String username, String email, String password);
 
     /**
      * Login an existing user.

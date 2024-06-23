@@ -25,12 +25,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User registerNewUser(String username, String password) {
-        return userRepository.save(User.builder().username(username).password(passwordEncoder.encode(password)).build());
+    public User registerNewUser(String username, String email, String password) {
+        return userRepository.save(User.builder().username(username).email(email).password(passwordEncoder.encode(password)).build());
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

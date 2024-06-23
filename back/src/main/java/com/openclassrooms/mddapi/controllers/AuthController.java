@@ -30,7 +30,7 @@ public class AuthController {
      */
     @PostMapping("/register")
     public ResponseEntity<Token> register(@Valid @RequestBody RegisterUser registerUser) {
-        return ResponseEntity.ok(new Token(authService.register(registerUser.username(), registerUser.password())));
+        return ResponseEntity.ok(new Token(authService.register(registerUser.username(), registerUser.email(), registerUser.password())));
     }
 
     /**
@@ -41,7 +41,7 @@ public class AuthController {
      */
     @PostMapping("/login")
     public ResponseEntity<Token> login(@Valid @RequestBody LoginUser loginUser) {
-        return ResponseEntity.ok(new Token(authService.login(loginUser.username(), loginUser.password())));
+        return ResponseEntity.ok(new Token(authService.login(loginUser.email(), loginUser.password())));
     }
 
 }

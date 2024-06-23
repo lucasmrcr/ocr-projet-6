@@ -20,8 +20,8 @@ public class AuthService implements IAuthService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public String register(String username, String password) {
-        User registeredUser = userService.registerNewUser(username, password);
+    public String register(String username, String email, String password) {
+        User registeredUser = userService.registerNewUser(username, email, password);
         // When user is registered, the response will contain a JWT token
         return jwtService.generateToken(new UsernamePasswordAuthenticationToken(
                 registeredUser, null, registeredUser.getAuthorities()
@@ -29,11 +29,11 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public String login(String username, String password) {
+    public String login(String email, String password) {
         // To make login action, first we find the user by email and then we check if the password is correct
         // If nothing matches we throw an exception which will be caught by exception handler
-        User loggedUser = userService.findByUsername(username)
-                .filter(user -> passwordEncoder.matches(password, user.getPassword()))
+        User loggedUser = userService.findByEmail(email)
+                .filter(user -> passwordEncoder.matches(password, password))
                 .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "Utilisateur ou mot de passe incorrect"));
 
         // And then we generate a JWT token

@@ -5,12 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 /**
  * This class represents the login request.
  *
- * @param username
+ * @param email
  * @param password
  */
 public record LoginUser(
-        @NotBlank(message = "Le nom d'utilisateur ne peut pas être vide.")
-        String username,
+        @NotBlank(message = "L'email ne peut pas être vide.")
+        String email,
         @NotBlank(message = "Le mot de passe ne peut pas être vide.")
         String password
 ) {
