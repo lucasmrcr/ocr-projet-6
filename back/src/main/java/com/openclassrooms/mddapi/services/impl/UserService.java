@@ -46,4 +46,23 @@ public class UserService implements IUserService {
         // When user is not found, we throw an exception which will be caught by exception handler
         return userRepository.findByEmail(email).orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "Le token n'est pas valide."));
     }
+
+    @Override
+    public User update(long id, String username, String email, String password) {
+        User userToUpdate = findUserByIdOrThrow(id);
+
+        userToUpdate.setUsername(username);
+        userToUpdate.setEmail(email);
+
+        if (password != null && !password.isBlank()) {
+            userToUpdate.setPassword(passwordEncoder.encode(password));
+        }
+
+        return userRepository.save(userToUpdate);
+    }
+
+    @Override
+    public User findUserByIdOrThrow(long id) {
+        return userRepository.findById(id).orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Utilisateur non trouvé."));
+    }
 }

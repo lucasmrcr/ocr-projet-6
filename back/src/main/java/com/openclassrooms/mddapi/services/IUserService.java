@@ -34,4 +34,22 @@ public interface IUserService extends UserDetailsService {
      * @return the current user
      */
     User me();
+
+    /**
+     * Update a user.
+     *
+     * @param id the user id
+     * @param username the username
+     * @param email the email
+     * @return the updated user
+     */
+    User update(long id, String username, String email, String password);
+
+    /**
+     * Find a user by id or throw an ApiException exception.
+     *
+     * @param id the user id
+     * @return the user
+     */
+    User findUserByIdOrThrow(long id);
 }

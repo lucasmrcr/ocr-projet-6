@@ -30,7 +30,7 @@ public class AuthService implements IAuthService {
         // To make login action, first we find the user by email and then we check if the password is correct
         // If nothing matches we throw an exception which will be caught by exception handler
         User loggedUser = userService.findByEmail(email)
-                .filter(user -> passwordEncoder.matches(password, password))
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()))
                 .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "Utilisateur ou mot de passe incorrect"));
 
         // And then we generate a JWT token
