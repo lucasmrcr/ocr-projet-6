@@ -27,4 +27,11 @@ public interface IUserService extends UserDetailsService {
      * @return the user
      */
     Optional<User> findByEmail(String email);
+
+    /**
+     * Get the current user.
+     *
+     * @return the current user
+     */
+    User me();
 }

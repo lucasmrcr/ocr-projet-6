@@ -1,6 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
-import org.springframework.security.core.Authentication;
+import com.openclassrooms.mddapi.models.User;
 
 /**
  * Service to handle JWT actions.
@@ -9,8 +9,8 @@ public interface IJWTService {
     /**
      * Generate a JWT token from an authentication object.
      *
-     * @param authentication the authentication object
+     * @param user the user
      * @return the JWT token
      */
-    String generateToken(Authentication authentication);
+    String generateToken(User user);
 }

@@ -7,7 +7,6 @@ import com.openclassrooms.mddapi.services.IJWTService;
 import com.openclassrooms.mddapi.services.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,7 @@ public class AuthService implements IAuthService {
     public String register(String username, String email, String password) {
         User registeredUser = userService.registerNewUser(username, email, password);
         // When user is registered, the response will contain a JWT token
-        return jwtService.generateToken(new UsernamePasswordAuthenticationToken(
-                registeredUser, null, registeredUser.getAuthorities()
-        ));
+        return jwtService.generateToken(registeredUser);
     }
 
     @Override
@@ -37,8 +34,6 @@ public class AuthService implements IAuthService {
                 .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "Utilisateur ou mot de passe incorrect"));
 
         // And then we generate a JWT token
-        return jwtService.generateToken(new UsernamePasswordAuthenticationToken(
-                loggedUser, null, loggedUser.getAuthorities()
-        ));
+        return jwtService.generateToken(loggedUser);
     }
 }
