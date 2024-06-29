@@ -1,5 +1,8 @@
 <div class="center">
-  <img src="/assets/logo_p6.png" alt="logo" />
-  <h1>Welcome to MDD</h1>
-  <button mat-raised-button color="primary" (click)="start()">Commencer</button>
+  <img [class]="{'logo': true, 'tablet': isTabletMode}" ngSrc="/assets/logo_p6.png" alt="logo" height="401"
+       width="695"/>
+  <div [class]="{'button-wrapper': true, 'tablet': isTabletMode}">
+    <app-button type="outer" text="Se connecter"/>
+    <app-button type="outer" text="S'inscrire"/>
+  </div>
 </div>
