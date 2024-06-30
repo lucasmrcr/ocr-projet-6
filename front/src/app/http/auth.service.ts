@@ -12,4 +12,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.apiService.post<TokenResponse>('/auth/login', {email, password});
   }
+
+  register(username: string, email: string, password: string) {
+    return this.apiService.post<TokenResponse>('/auth/register', {username, email, password});
+  }
 }

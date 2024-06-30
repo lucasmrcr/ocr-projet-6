@@ -11,11 +11,13 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {ButtonComponent} from '../components/button/button.component';
+import {RegisterComponent} from './pages/register/register.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
+    RegisterComponent
   ],
   providers: [provideHttpClient(), MessageService],
   imports: [

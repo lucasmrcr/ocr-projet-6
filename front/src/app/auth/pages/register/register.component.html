@@ -1,0 +1,27 @@
+<p-toast/>
+
+<div class="md:h-6rem md:border-bottom-1 md:mb-5">
+  <img class="w-full md:w-fit md:h-full" src="/assets/logo_p6.png" alt="logo"/>
+</div>
+<h1 class="text-center">Inscription</h1>
+
+<div class="md:flex md:flex-column md:justify-content-center md:align-items-center">
+  <form class="flex flex-column gap-5 mt-5 p-5 md:w-30rem" [formGroup]="registerForm" (ngSubmit)="submit()">
+    <p-floatLabel>
+      <input class="w-full" id="username" type="text" pInputText formControlName="username"/>
+      <label for="username">nom d'utilisateur</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <input class="w-full" id="email" type="text" pInputText formControlName="email"/>
+      <label for="email">E-mail</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <input class="w-full" id="password" type="password" pInputText formControlName="password"/>
+      <label for="password">Mot de passe</label>
+    </p-floatLabel>
+    <div class="flex flex-row justify-content-center">
+      <p-button label="Se connecter" [disabled]="!registerForm.valid" type="submit"/>
+    </div>
+  </form>
+
+</div>
