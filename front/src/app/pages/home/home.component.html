@@ -1,8 +1,10 @@
-<div class="center">
-  <img [class]="{'logo': true, 'tablet': isTabletMode}" ngSrc="/assets/logo_p6.png" alt="logo" height="401"
-       width="695"/>
-  <div [class]="{'button-wrapper': true, 'tablet': isTabletMode}">
-    <app-button type="outer" text="Se connecter"/>
-    <app-button type="outer" text="S'inscrire"/>
+<div class="flex flex-column h-screen align-items-center py-8 md:justify-content-center">
+
+  <img src="/assets/logo_p6.png" alt="logo" class="h-8rem">
+
+  <div class="flex flex-column gap-5 pt-5 md:flex-row">
+    <p-button routerLink="/auth/login" styleClass="w-full" class="block" label="Se connecter" [outlined]="true" severity="contrast"/>
+    <p-button routerLink="/auth/register" styleClass="w-full" label="S'inscrire" [outlined]="true" severity="contrast"/>
   </div>
+
 </div>

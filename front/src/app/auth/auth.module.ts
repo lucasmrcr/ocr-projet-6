@@ -10,7 +10,6 @@ import {MessageModule} from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
 import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
-import {ButtonComponent} from '../components/button/button.component';
 import {RegisterComponent} from './pages/register/register.component';
 
 
@@ -30,7 +29,6 @@ import {RegisterComponent} from './pages/register/register.component';
     MessageModule,
     MessagesModule,
     ToastModule,
-    ButtonComponent,
     NgOptimizedImage,
   ],
 })
