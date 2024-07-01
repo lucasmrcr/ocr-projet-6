@@ -14,3 +14,20 @@ type User = {
   email: string,
   followedTopics: Topic[]
 }
+
+type Article = {
+  id: number;
+  title: string;
+  content: string;
+  topic: Topic;
+  author: User;
+  createdAt: Date;
+  comments: AComment[];
+}
+
+type AComment = {
+  id: number;
+  content: string;
+  author: Omit<User, 'followedTopics'>;
+  createdAt: Date;
+}

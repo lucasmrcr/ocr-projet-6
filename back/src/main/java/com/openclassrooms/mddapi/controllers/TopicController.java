@@ -1,6 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
-import com.openclassrooms.mddapi.controllers.dto.response.topic.Topic;
+import com.openclassrooms.mddapi.controllers.dto.response.topic.TopicDetails;
 import com.openclassrooms.mddapi.services.ITopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +25,8 @@ public class TopicController {
      * @return The list of topics.
      */
     @GetMapping("/topics")
-    public ResponseEntity<List<Topic>> getTopics(@RequestParam boolean followed) {
-        return ResponseEntity.ok(Topic.from(topicService.getTopics(followed)));
+    public ResponseEntity<List<TopicDetails>> getTopics(@RequestParam boolean followed) {
+        return ResponseEntity.ok(TopicDetails.from(topicService.getTopics(followed)));
     }
 
     /**

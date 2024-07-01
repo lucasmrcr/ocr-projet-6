@@ -1,0 +1,21 @@
+<app-component-navbar/>
+<p-toast/>
+<div class="flex flex-column justify-content-center align-items-center gap-5">
+  <h1 class="font-bold text-center">Créer un nouvel article</h1>
+  <form class="flex flex-column gap-5 mt-5 p-5 w-full md:w-30rem" (submit)="submit()" [formGroup]="articleForm">
+    <p-dropdown styleClass="w-full" [options]="topics" optionLabel="name" optionValue="id"
+                placeholder="Sélectionner un thème" formControlName="topic"></p-dropdown>
+    <p-floatLabel>
+      <input class="w-full" id="title" type="text" pInputText formControlName="title"/>
+      <label for="title">Titre</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <textarea class="w-full" id="content" formControlName="content" rows="5" cols="30" pInputTextarea>
+      </textarea>
+      <label for="content">Contenu de l'article</label>
+    </p-floatLabel>
+    <div class="flex flex-row justify-content-center">
+      <p-button label="Créer" [disabled]="!articleForm.valid" type="submit"/>
+    </div>
+  </form>
+</div>
