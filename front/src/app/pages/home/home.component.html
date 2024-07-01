@@ -1,5 +1,10 @@
-<div class="center">
-  <img src="/assets/logo_p6.png" alt="logo" />
-  <h1>Welcome to MDD</h1>
-  <button mat-raised-button color="primary" (click)="start()">Commencer</button>
+<div class="flex flex-column h-screen align-items-center py-8 md:justify-content-center">
+
+  <img src="/assets/logo_p6.png" alt="logo" class="h-8rem">
+
+  <div class="flex flex-column gap-5 pt-5 md:flex-row">
+    <p-button routerLink="/auth/login" styleClass="w-full" class="block" label="Se connecter" [outlined]="true" severity="contrast"/>
+    <p-button routerLink="/auth/register" styleClass="w-full" label="S'inscrire" [outlined]="true" severity="contrast"/>
+  </div>
+
 </div>

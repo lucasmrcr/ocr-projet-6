@@ -1,0 +1,13 @@
+<div class="grid m-0">
+  <div *ngFor="let topic of topics" class="col-12 md:col-6 p-3">
+    <p-card [header]="topic?.name" styleClass="h-full bg-black-alpha-10 align-items-stretch">
+      <p class="m-0" [textContent]="topic?.description"></p>
+      <ng-template pTemplate="footer">
+        <div class="text-center mt-auto">
+          <p-button *ngIf="!isSubscribed(topic)" (onClick)="like(topic)" label="S'abonner"></p-button>
+          <p-button *ngIf="isSubscribed(topic)" (onClick)="dislike(topic)" label="Se désabonner" severity="danger"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

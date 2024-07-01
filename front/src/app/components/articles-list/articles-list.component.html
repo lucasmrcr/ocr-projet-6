@@ -1,0 +1,13 @@
+<div class="grid m-0">
+  <div *ngFor="let article of articles" class="col-12 md:col-6 p-3" (click)="navigateTo(article)">
+    <p-card [header]="article?.title" styleClass="h-full bg-black-alpha-10 align-items-stretch">
+      <div class="flex justify-content-between mb-3">
+        <p class="m-0">{{ article.createdAt | date: 'dd/MM/yy HH:mm' }}</p>
+        <p class="m-0" [textContent]="article.author.username"></p>
+      </div>
+      <p class="m-0">
+        {{ article.content }}
+      </p>
+    </p-card>
+  </div>
+</div>
