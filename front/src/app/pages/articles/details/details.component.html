@@ -1,0 +1,31 @@
+<app-component-navbar/>
+<p-toast />
+<div class="p-5">
+  <h1 class="font-bold">Titre de l'article sélectionné</h1>
+  <div class="my-3 md:w-3">
+    <p class="m-0 inline-block w-6 md:w-4">{{ article?.createdAt | date: 'dd/MM:yy HH:mm' }}</p>
+    <p class="m-0 inline-block w-6 md:w-4">{{ article?.author?.username }}</p>
+    <p class="m-0 inline-block w-6 md:w-4">{{ article?.topic?.name }}</p>
+  </div>
+  <p class="m-0">{{ article?.content }}</p>
+  <p-divider/>
+  <h1>Commentaires</h1>
+
+  <div *ngFor="let comment of article?.comments" class="flex flex-column-reverse mb-5 md:flex-row">
+    <p class="m-0 text-right p-3">{{ comment.author.username }}</p>
+    <p class="m-0 md:hidden">{{ comment.content }}</p>
+    <p class="m-0 hidden md:block bg-gray-300 p-3 border-round flex-grow-1">{{ comment.content }}</p>
+  </div>
+
+  <form (submit)="submit()">
+    <div class="relative md:flex">
+      <div class="md:flex-grow-1">
+        <p-floatLabel>
+          <textarea class="w-full" id="comment" [formControl]="commentForm" rows="5" cols="30" pInputTextarea></textarea>
+          <label for="comment">Ecrivez ici votre commentaire</label>
+        </p-floatLabel>
+      </div>
+      <p-button class="absolute right-0 top-0 md:relative" size="large" [text]="true" icon="pi pi-send" type="submit" severity="help"/>
+    </div>
+  </form>
+</div>

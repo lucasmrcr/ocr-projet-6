@@ -29,4 +29,12 @@ public interface ITopicService {
      * @param topicId The id of the topic to dislike.
      */
     void dislikeTopic(long topicId);
+
+    /**
+     * Find a topic by its id.
+     *
+     * @param topicId The id of the topic to find.
+     * @return The topic.
+     */
+    Topic findById(long topicId);
 }

@@ -11,6 +11,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {RegisterComponent} from './pages/register/register.component';
+import {AuthGuard} from './auth.guard';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import {RegisterComponent} from './pages/register/register.component';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [MessageService],
+  providers: [MessageService, AuthGuard],
   imports: [
     CommonModule,
     CalendarModule,

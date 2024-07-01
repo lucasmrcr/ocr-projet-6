@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.configuration;
 
+import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Topic;
+import com.openclassrooms.mddapi.repositories.IArticleRepository;
 import com.openclassrooms.mddapi.repositories.ITopicRepository;
 import com.openclassrooms.mddapi.repositories.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -22,14 +25,30 @@ public class DevDatabaseInitializer {
     private final ITopicRepository topicRepository;
     private final IUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final IArticleRepository articleRepository;
 
     @Profile("dev")
     @Bean
     public ApplicationRunner initializeDatabase() {
         return args -> {
-            initializeDefaultTopics();
             initializeDevUser();
+            initializeDefaultTopics();
+            initializeDefaultArticles();
         };
+    }
+
+    private void initializeDefaultArticles() {
+        if (articleRepository.count() == 0) {
+            articleRepository.save(new Article(
+                    0,
+                    "Java 8",
+                    "Java 8 est une version majeure du langage de programmation Java. Elle a été publiée le 18 mars 2014. Elle a introduit de nombreuses nouvelles fonctionnalités, telles que les expressions lambda, les interfaces fonctionnelles, les références de méthodes et les streams.",
+                    topicRepository.findByName("Java").orElseThrow(),
+                    userRepository.findByUsername("dev").orElseThrow(),
+                    Instant.now(),
+                    List.of()
+            ));
+        }
     }
 
     /**

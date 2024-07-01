@@ -51,4 +51,10 @@ public class TopicService implements ITopicService {
         loggedUser.getFollowedTopics().removeIf(t -> t.getId() == topic.getId());
         userService.save(loggedUser);
     }
+
+    @Override
+    public Topic findById(long topicId) {
+        return topicRepository.findById(topicId)
+                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Le topic n'existe pas."));
+    }
 }
