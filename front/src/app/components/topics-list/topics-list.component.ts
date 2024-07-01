@@ -28,12 +28,12 @@ export class TopicsListComponent implements OnInit {
   }
 
   isSubscribed(topic: Topic | undefined): boolean {
-    if (!topic) return false;
-    return this.me?.followedTopics.some(t => t.id === topic.id) || false;
+    if (!topic || !this.me) return false;
+    return this.me?.followedTopics?.some(t => t.id === topic.id) || false;
   }
 
   ngOnInit(): void {
-    this.topicService.getAllTopics(this.followed).subscribe(topics => this.topics = topics);
     this.userService.getMe().subscribe(me => this.me = me);
+    this.topicService.getAllTopics(this.followed).subscribe(topics => this.topics = topics);
   }
 }

@@ -6,7 +6,6 @@ import com.openclassrooms.mddapi.services.IUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -33,14 +32,12 @@ public class UserController {
     /**
      * Update a user.
      *
-     * @param id the user id
      * @param updateUser the user to update
      * @return the updated user
      */
-    @PreAuthorize("@securityService.doIdEqualsToCurrentUser(#id)")
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDetails> update(@PathVariable long id, @Valid @RequestBody UpdateUser updateUser) {
-        return ResponseEntity.ok(UserDetails.from(userService.update(id, updateUser.username(), updateUser.email(), updateUser.password())));
+    @PutMapping("/me")
+    public ResponseEntity<UserDetails> update(@Valid @RequestBody UpdateUser updateUser) {
+        return ResponseEntity.ok(UserDetails.from(userService.update(updateUser.username(), updateUser.email())));
     }
 
 }

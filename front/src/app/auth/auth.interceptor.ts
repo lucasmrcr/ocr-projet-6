@@ -1,5 +1,5 @@
 import {HttpEvent, HttpHandlerFn, HttpHeaders, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {catchError, Observable} from 'rxjs';
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const token = sessionStorage.getItem('token');
@@ -16,5 +16,13 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
     headers,
   });
 
-  return next(newReq);
+  return next(newReq).pipe(
+    catchError((err) => {
+      if (err.status === 401) {
+        sessionStorage.removeItem('token');
+        window.location.reload();
+      }
+      throw err;
+    }),
+  );
 }

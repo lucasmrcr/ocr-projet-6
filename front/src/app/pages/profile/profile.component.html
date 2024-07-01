@@ -1,4 +1,24 @@
 <app-component-navbar/>
-<p-divider />
+<p-toast/>
+<h1 class="text-center">Profil utilisateur</h1>
+<div class="md:grid">
+  <div class="flex flex-column justify-content-center align-items-center md:col-6 md:col-offset-3">
+    <form class="flex flex-column gap-5 mt-5 p-5 md:w-30rem" [formGroup]="updateForm" (ngSubmit)="submit()">
+      <p-floatLabel>
+        <input class="w-full" id="username" type="text" pInputText formControlName="username"/>
+        <label for="username">nom d'utilisateur</label>
+      </p-floatLabel>
+      <p-floatLabel>
+        <input class="w-full" id="email" type="text" pInputText formControlName="email"/>
+        <label for="email">E-mail</label>
+      </p-floatLabel>
+      <div class="flex flex-row justify-content-center">
+        <p-button label="Sauvegarder" [disabled]="!updateForm.valid" type="submit"/>
+      </div>
+    </form>
+    <p-button label="Se deconnecter" (click)="logout()" [text]="true" severity="danger"/>
+  </div>
+</div>
+<p-divider/>
 <h1 class="text-center">Abonnements</h1>
 <app-component-topics-list [followed]="true"/>

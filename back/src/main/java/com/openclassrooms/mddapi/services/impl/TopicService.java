@@ -34,7 +34,7 @@ public class TopicService implements ITopicService {
         Topic topic = topicRepository.findById(topicId)
                 .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Le topic n'existe pas."));
 
-        if (loggedUser.getFollowedTopics().contains(topic)) {
+        if (loggedUser.getFollowedTopics().stream().anyMatch(t -> t.getId() == topic.getId())) {
             return;
         }
 

@@ -21,6 +21,16 @@ public class AuthController {
     private final IAuthService authService;
 
     /**
+     * Validate the token.
+     *
+     * @return the response entity
+     */
+    @GetMapping("/validate")
+    public ResponseEntity<Void> validate() {
+        return ResponseEntity.ok().build();
+    }
+
+    /**
      * Register a new user.
      *
      * @param registerUser the user to register

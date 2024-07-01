@@ -48,15 +48,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User update(long id, String username, String email, String password) {
-        User userToUpdate = findUserByIdOrThrow(id);
+    public User update(String username, String email) {
+        User userToUpdate = me();
 
         userToUpdate.setUsername(username);
         userToUpdate.setEmail(email);
-
-        if (password != null && !password.isBlank()) {
-            userToUpdate.setPassword(passwordEncoder.encode(password));
-        }
 
         return save(userToUpdate);
     }
