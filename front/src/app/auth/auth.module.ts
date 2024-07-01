@@ -18,7 +18,7 @@ import {RegisterComponent} from './pages/register/register.component';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [provideHttpClient(), MessageService],
+  providers: [MessageService],
   imports: [
     CommonModule,
     CalendarModule,

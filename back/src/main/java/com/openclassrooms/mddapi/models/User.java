@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Represents a user.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -30,6 +33,14 @@ public class User implements UserDetails {
 
     @Column(name = "password")
     private String password;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_followed_topics",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "topic_id")
+    )
+    private List<Topic> followedTopics;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
