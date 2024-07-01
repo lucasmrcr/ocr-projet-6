@@ -15,4 +15,5 @@ public class SecurityService implements ISecurityService {
     public boolean doIdEqualsToCurrentUser(long id) {
         return userService.me().getId() == id;
     }
+
 }

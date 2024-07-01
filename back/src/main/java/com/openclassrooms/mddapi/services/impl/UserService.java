@@ -58,11 +58,16 @@ public class UserService implements IUserService {
             userToUpdate.setPassword(passwordEncoder.encode(password));
         }
 
-        return userRepository.save(userToUpdate);
+        return save(userToUpdate);
     }
 
     @Override
     public User findUserByIdOrThrow(long id) {
         return userRepository.findById(id).orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Utilisateur non trouvé."));
+    }
+
+    @Override
+    public User save(User loggedUser) {
+        return userRepository.save(loggedUser);
     }
 }

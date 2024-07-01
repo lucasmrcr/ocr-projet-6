@@ -52,4 +52,6 @@ public interface IUserService extends UserDetailsService {
      * @return the user
      */
     User findUserByIdOrThrow(long id);
+
+    User save(User loggedUser);
 }
