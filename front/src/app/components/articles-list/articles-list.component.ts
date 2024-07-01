@@ -19,6 +19,11 @@ export class ArticlesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.articleService.getArticles().subscribe(articles => this.articles = articles);
+    this.articleService.getArticles()
+      .subscribe(articles => this.articles = articles.sort(this.dateDescendingComparator));
+  }
+
+  dateDescendingComparator(a: Article, b: Article): number {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   }
 }

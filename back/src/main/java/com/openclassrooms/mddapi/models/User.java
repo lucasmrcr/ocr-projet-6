@@ -36,9 +36,10 @@ public class User implements UserDetails {
 
     @ManyToMany
     @JoinTable(
-        name = "user_followed_topics",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "topic_id")
+            name = "user_followed_topics",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "topic_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "topic_id"})
     )
     private List<Topic> followedTopics;
 

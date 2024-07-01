@@ -21,7 +21,7 @@ type Article = {
   content: string;
   topic: Topic;
   author: User;
-  createdAt: Date;
+  createdAt: string;
   comments: AComment[];
 }
 

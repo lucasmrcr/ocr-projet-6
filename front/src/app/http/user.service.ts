@@ -12,4 +12,9 @@ export class UserService {
   getMe() {
     return this.apiService.get<User>('/users/me');
   }
+
+  updateMe(username: string, email: string) {
+    return this.apiService.put<User>('/users/me', {username, email});
+  }
+
 }

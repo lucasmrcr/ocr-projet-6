@@ -33,6 +33,7 @@ public class ArticleService implements IArticleService {
                 .title(title)
                 .content(content)
                 .author(userService.me())
+                .comments(List.of())
                 .build();
 
         return articleRepository.save(article);

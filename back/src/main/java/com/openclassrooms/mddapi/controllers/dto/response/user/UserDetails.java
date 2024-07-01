@@ -11,13 +11,13 @@ import java.util.List;
  * @param id             the id
  * @param username       the username
  * @param email          the email
- * @param followedTopicDetails the followed topics
+ * @param followedTopics the followed topics
  */
 public record UserDetails(
         long id,
         String username,
         String email,
-        List<TopicDetails> followedTopicDetails
+        List<TopicDetails> followedTopics
 ) {
 
     public static UserDetails from(User user) {
