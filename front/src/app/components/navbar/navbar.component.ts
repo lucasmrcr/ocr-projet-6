@@ -7,13 +7,19 @@ import {Component} from '@angular/core';
 })
 export class NavbarComponent {
 
-  showMobileNavBar = false;
+  showMobileNavBar: boolean = false;
 
-  openMobileNavBar() {
+  /**
+   * Open the mobile navigation bar
+   */
+  openMobileNavBar(): void {
     this.showMobileNavBar = true;
   }
 
-  closeMobileNavBar() {
+  /**
+   * Close the mobile navigation bar
+   */
+  closeMobileNavBar(): void {
     this.showMobileNavBar = false;
   }
 

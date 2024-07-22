@@ -8,7 +8,13 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {
   }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  /**
+   * Check if the user is authenticated
+   *
+   * @param next
+   * @param state
+   */
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (!sessionStorage.getItem('token')) {
       void this.router.navigateByUrl('/auth/login');
       return false;

@@ -1,18 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TopicService} from '../../../http/topic.service';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ArticleService} from '../../../http/article.service';
 import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+
+type ArticleForm = FormGroup<{
+  topic: FormControl<number | null>;
+  title: FormControl<string | null>;
+  content: FormControl<string | null>;
+}>
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss',
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
 
-  articleForm = this.formBuilder.group({
+  articleForm: ArticleForm = this.formBuilder.group({
     topic: [0, [Validators.required, Validators.pattern('^[0-9]*$')]],
     title: ['', [Validators.required]],
     content: ['', [Validators.required]],
@@ -20,12 +27,26 @@ export class CreateComponent implements OnInit {
 
   topics: Topic[] | undefined;
 
+  private createArticleSubscription: Subscription;
+  private getTopicsSubscription: Subscription;
+
   constructor(private topicService: TopicService, private formBuilder: FormBuilder, private articleService: ArticleService, private messageService: MessageService, private router: Router) {
   }
 
+  /**
+   * Unsubscribe from the createArticleSubscription when the component is destroyed
+   */
+  ngOnDestroy(): void {
+    this.createArticleSubscription?.unsubscribe();
+    this.getTopicsSubscription?.unsubscribe();
+  }
+
+  /**
+   * Submit the form
+   */
   submit() {
     if (this.articleForm.valid) {
-      this.articleService
+      this.createArticleSubscription = this.articleService
         .createArticle(this.articleForm.value.topic!, this.articleForm.value.title!, this.articleForm.value.content!)
         .subscribe({
           next: () => {
@@ -40,7 +61,7 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.topicService.getAllTopics().subscribe((topics) => this.topics = topics);
+    this.getTopicsSubscription = this.topicService.getAllTopics().subscribe((topics) => this.topics = topics);
   }
 
 }

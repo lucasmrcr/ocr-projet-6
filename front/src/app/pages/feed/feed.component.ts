@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {ArticleService} from '../../http/article.service';
 
 @Component({
   selector: 'app-feed',
@@ -7,7 +6,4 @@ import {ArticleService} from '../../http/article.service';
   styleUrl: './feed.component.scss',
 })
 export class FeedComponent {
-
-  constructor(private articleService: ArticleService) {
-  }
 }

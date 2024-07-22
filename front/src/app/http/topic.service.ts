@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,15 +10,27 @@ export class TopicService {
   constructor(private apiService: ApiService) {
   }
 
-  getAllTopics(followed: boolean = false) {
+  /**
+   * Get all topics
+   * @param followed If the user is following the topic
+   */
+  getAllTopics(followed: boolean = false): Observable<Topic[]> {
     return this.apiService.get<Topic[]>('/topics?followed=' + followed);
   }
 
-  like(topic: Topic) {
+  /**
+   * Get a topic by id
+   * @param topic The topic id
+   */
+  like(topic: Topic): Observable<void> {
     return this.apiService.put(`/users/me/topics/${topic.id}`, {});
   }
 
-  dislike(topic: Topic) {
+  /**
+   * Dislike a topic
+   * @param topic The topic to dislike
+   */
+  dislike(topic: Topic): Observable<void> {
     return this.apiService.delete(`/users/me/topics/${topic.id}`);
   }
 

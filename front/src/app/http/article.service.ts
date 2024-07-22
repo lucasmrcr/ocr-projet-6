@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,13 @@ export class ArticleService {
   constructor(private apiService: ApiService) {
   }
 
-  createArticle(topicId: number, title: string, content: string) {
+  /**
+   * Create an article
+   * @param topicId The topic id
+   * @param title The article title
+   * @param content The article content
+   */
+  createArticle(topicId: number, title: string, content: string): Observable<void> {
     return this.apiService.post('/articles', {
       topicId,
       title,
@@ -17,15 +24,27 @@ export class ArticleService {
     });
   }
 
-  getArticles() {
+  /**
+   * Get the articles from the server
+   */
+  getArticles(): Observable<Article[]> {
     return this.apiService.get<Article[]>('/articles');
   }
 
-  getArticle(id: number) {
+  /**
+   * Get an article by id
+   * @param id The article id
+   */
+  getArticle(id: number): Observable<Article> {
     return this.apiService.get<Article>('/articles/' + id);
   }
 
-  createComment(articleId: number, content: string) {
+  /**
+   * Like an article
+   * @param articleId The article id
+   * @param content The article content
+   */
+  createComment(articleId: number, content: string): Observable<void> {
     return this.apiService.post('/articles/' + articleId + '/comments', {
       content,
     });
