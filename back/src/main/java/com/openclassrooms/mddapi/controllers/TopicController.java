@@ -30,7 +30,7 @@ public class TopicController {
     }
 
     /**
-     * Get a topic by its id.
+     * Like a topic by its id.
      *
      * @param id The id of the topic.
      * @return Empty no content response.
