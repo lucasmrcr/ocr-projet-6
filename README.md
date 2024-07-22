@@ -1,25 +1,17 @@
-# P6-Full-Stack-reseau-dev
 
-## Front
+# Instruction d'installation
+## Prérequis
+|Outil|version|
+|----|----|
+|PostgreSQL|16|
+|Java|21|
+|NodeJS|20|
+|maven|3.8.6|
+Vous devez avoir d'installé une base de données PostgreSQL.
+Après avoir installé la base de données PostgreSQL, vous devez configurer dans le fichier `back/src/main/resources/application.properties` les identifiants de connexion à votre base de données.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
-
-Don't forget to install your node_modules before starting (`npm install`).
-
-### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-### Where to start
-
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
-
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
-
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
-
-Good luck!
+## Lancer le projet
+Lancez le backend en utilisant la commande :
+`mvn spring-boot:run`
+Lancez le front-end en utilisant la commande :
+`npm start`
